@@ -1,12 +1,13 @@
-name: Update Major Version
-description: Update major version tags for GitHub Actions based on semantic versioning tags
-author: nownabe
+name: Update major version tag
+description:
+  Update major version tags for GitHub Actions based on semantic versioning tags
+author: Joram van den Boezem
 inputs:
   github_token:
     description: GitHub token
     default: ${{ github.token }}
 runs:
-  using: node12
+  using: node16
   main: dist/index.js
 branding:
   icon: tag

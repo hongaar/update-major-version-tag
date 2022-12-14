@@ -1,7 +1,18 @@
 {
-  "name": "update-majorver",
-  "version": "1.1.0",
+  "name": "update-major-version-tag",
+  "version": "0.0.0",
   "description": "Update major version tags based on semver for GitHub Actions",
+  "keywords": [
+    "actions",
+    "node"
+  ],
+  "homepage": "https://github.com/hongaar/update-major-version-tag#readme",
+  "bugs": {
+    "url": "https://github.com/hongaar/update-major-version-tag/issues"
+  },
+  "repository": "github:hongaar/update-major-version-tag",
+  "license": "MIT",
+  "author": "Joram van den Boezem <joram@vandenboezem.nl>",
   "main": "dist/index.js",
   "scripts": {
     "lint": "eslint 'src/**.ts' 'tests/**.ts' --fix",
@@ -10,41 +21,7 @@
     "precommit": "npm run build && git add dist/",
     "release": "PACKAGE_VERSION=v$(grep -m1 version package.json | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && git tag -a $PACKAGE_VERSION -m $PACKAGE_VERSION && git push --tags"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nowactions/update-majorver"
-  },
-  "keywords": [
-    "actions",
-    "node"
-  ],
-  "author": "nownabe",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/nowactions/update-majorver/issues"
-  },
-  "homepage": "https://github.com/nowactions/update-majorver#readme",
-  "dependencies": {
-    "@actions/core": "^1.2.6",
-    "@actions/github": "^2.2.0"
-  },
-  "devDependencies": {
-    "@types/jest": "26.0.24",
-    "@typescript-eslint/eslint-plugin": "2.34.0",
-    "@typescript-eslint/parser": "2.34.0",
-    "@zeit/ncc": "0.22.3",
-    "eslint": "6.8.0",
-    "eslint-config-prettier": "6.15.0",
-    "eslint-plugin-import": "2.25.4",
-    "eslint-plugin-prettier": "3.4.1",
-    "husky": "4.3.8",
-    "jest": "26.6.3",
-    "prettier": "2.5.1",
-    "ts-jest": "25.5.1",
-    "typescript": "3.9.10"
-  },
   "jest": {
-    "testEnvironment": "node",
     "collectCoverageFrom": [
       "src/update-majorver.js"
     ],
@@ -60,8 +37,35 @@
       "js",
       "ts"
     ],
+    "testEnvironment": "node",
     "transform": {
       "^.+\\.ts$": "ts-jest"
     }
+  },
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/github": "^2.2.0"
+  },
+  "devDependencies": {
+    "@types/jest": "26.0.24",
+    "@typescript-eslint/eslint-plugin": "2.34.0",
+    "@typescript-eslint/parser": "2.34.0",
+    "@zeit/ncc": "0.22.3",
+    "eslint": "6.8.0",
+    "eslint-config-prettier": "6.15.0",
+    "eslint-plugin-import": "2.25.4",
+    "eslint-plugin-prettier": "3.4.1",
+    "husky": "4.3.8",
+    "jest": "26.6.3",
+    "moker": "0.10.0",
+    "prettier": "2.8.1",
+    "ts-jest": "25.5.1",
+    "typescript": "3.9.10"
+  },
+  "packageManager": "yarn@3.3.0",
+  "moker": {
+    "plugins": [
+      "prettier"
+    ]
   }
 }
