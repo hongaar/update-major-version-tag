@@ -1,38 +1,46 @@
-# GitHub Action: Update Major Version Tag
+# update-major-version-tag ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/hongaar/update-major-version-tag?label=latest%20version&sort=semver)
 
-[![Test](https://github.com/nowactions/update-majorver/workflows/Test/badge.svg)](https://github.com/nowactions/update-majorver/actions)
-[![Release](https://img.shields.io/github/release/nowactions/update-majorver.svg)](https://github.com/nowactions/update-majorver/releases)
-[![License](https://img.shields.io/github/license/nowactions/update-majorver)](LICENSE)
+**This GitHub Action updates major version tags (e.g. v1, v2) when a tag is
+pushed or release is created.**
 
-This GitHub Action updates major version tags (e.g. v1, v2) when semantic versioning tag is pushed.
-If `v1.2.3` tag is pushed, it updates `v1` tag.
-It works well with [GitHub Action versioning](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/about-actions#versioning-your-action).
+For example, when a `v1.2.3` tag is pushed it updates the `v1` tag to support
+the recommended
+[GitHub Action versioning](https://docs.github.com/en/actions/creating-actions/about-custom-actions#using-tags-for-release-management)
+release management strategy.
 
 ## Usage
 
 ### Prerequisites
 
-Create a workflow `.yml` file in your `.github/workflows` directory.
-An [example workflow](#example) is available below.
-For more information, reference the GitHub Help Documentation for [Creating a workflow file](https://help.github.com/en/articles/configuring-a-workflow#creating-a-workflow-file).
+Create a workflow `.yml` file in your `.github/workflows` directory. An
+[example workflow](#example) is available below. For more information, reference
+the GitHub Help Documentation for
+[creating a workflow file](https://help.github.com/en/articles/configuring-a-workflow#creating-a-workflow-file).
 
 ## Example
 
 ```yml
-name: Update Major Version Tag
+# .github/workflows/update-major-version-tag.yml
+name: update-major-version-tag
 
 on:
-  push:
-    tags:
-      - "v*"
+  release:
+    types: [published, edited]
 
 jobs:
-  update-majorver:
-    name: Update Major Version Tag
+  update-major-version-tag:
     runs-on: ubuntu-latest
     steps:
-      - uses: nowactions/update-majorver@v1
+      - uses: hongaar/update-major-version-tag@v1
 ```
+
+## Credits
+
+This is a fork of
+[nowactions/update-majorver](https://github.com/nowactions/update-majorver) with
+only a
+[tiny change](https://github.com/hongaar/update-major-version-tag/commit/f772bc75ecf324c573ad680be17502d16354d00d)
+in order to support the `release` trigger as well as the `push` trigger.
 
 ## Development
 
@@ -50,6 +58,6 @@ npm test
 
 ### Release
 
-* Bump up the version in `package.json`
-* Commit the changes
-* Run `npm run release`
+- Bump up the version in `package.json`
+- Commit the changes
+- Run `npm run release`
