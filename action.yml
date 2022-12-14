@@ -1,4 +1,4 @@
-name: Update Major Version
+name: Update major version tag
 description: Update major version tags for GitHub Actions based on semantic versioning tags
 author: nownabe
 inputs:
