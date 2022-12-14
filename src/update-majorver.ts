@@ -1,5 +1,5 @@
 import * as core from "@actions/core";
-import { GitHub, context } from "@actions/github";
+import { context, GitHub } from "@actions/github";
 
 export default async function run(): Promise<void> {
   try {
@@ -18,7 +18,7 @@ export default async function run(): Promise<void> {
 
     const tag = context.ref.split("/")[2];
     const major = tag.split(".")[0];
-    const sha = context.payload.head_commit.id;
+    const sha = context.sha;
 
     const getRefParams = {
       owner: context.repo.owner,
